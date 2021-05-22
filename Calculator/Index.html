@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>BASIC CALCULATOR</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="css\bootstrap.css">
+	<link rel="stylesheet" href="css\mdb.css">
+
+	<style>
+		input
+		{
+			height: 45px;
+		}
+
+		#clear
+		{
+			border-radius: 10px;
+		}
+
+		#op,#equals,#add,#sub,#mul,#div
+		{
+				background:linear-gradient(45deg,grey,purple);
+				border-radius: 10px;
+		}
+
+		h5
+		{
+			font-size: 10px;
+		}
+
+		#res
+		{
+			background-color: limegreen;
+			color: white;
+			padding: 15px 30px;
+			border-radius: 10px;
+			border:3px inset purple;
+			box-shadow:0 0 10px black;
+		}
+
+		@media (max-width: 800px)
+		{
+			#div1
+			{
+				flex-direction: column;
+				margin: 10px;
+			}
+
+			#innerform
+			{
+				flex-direction: column;
+				margin: 10px;
+
+			}
+
+			#div2
+			{
+				flex-direction: column;
+				text-align: center;
+				margin:10px;
+			}
+
+			span
+			{
+				margin-top: 40px;
+			}
+
+		}
+	</style>
+</head>
+<body>
+	<div class="container mt-5">
+		<div class="row">
+		<div class="col-12 mx-auto">
+			<div class="card">
+				<div class="card-header bg-secondary text-center text-white">
+					<h3 class="font-weight-bold">CALCULATOR APP</h3>
+				</div>
+				<div class="card-body" id="body">
+					
+					<div class="text-center d-flex flex-wrap justify-content-around" id="div1">
+						<form  class="d-flex flex-wrap justify-content-around" id="innerform">
+							<input type="number" placeholder="First Number" class="ml-5 text-center" id="f-num">
+							<button class="btn btn-primary ml-5" id="op">+</button>
+							<input type="number" placeholder="Second Number" class="ml-5 text-center" id="s-num">
+						</form>	
+							<button class="btn btn-primary ml-5" id="equals">=</button>
+							<span id="res" class="ml-5">RESULT</span>
+						
+					</div>
+					
+					<div class="mt-5 d-flex flex-wrap justify-content-around" id="div2">
+						<span class="font-weight-bold mt-4">Choose Operator</span>
+						<button class="btn btn-primary ml-5" id="add">+</button>
+						<button class="btn btn-primary ml-5" id="sub">-</button>
+						<button class="btn btn-primary ml-5" id="mul">*</button>
+						<button class="btn btn-primary ml-5" id="div">/</button>
+						<button class="btn btn-warning ml-5" id="clear">clear</button>
+					</div>
+				
+				</div>
+				<div class="card-footer text-center">
+					<h5>Developed & Maintained by <span class="text-primary">&copy:Vishal.Nakka</span></h5>
+				</div>
+			</div>
+		</div>
+	</div>
+	</div>
+
+<!-- script code -->
+
+<script>
+	let firstNumTag= document.querySelector('#f-num');
+
+	let secondNumTag=document.querySelector('#s-num');
+	let displayTag=document.querySelector('#res');
+	let addTag=document.querySelector('#add');
+	let subTag=document.querySelector('#sub');
+	let mulTag=document.querySelector('#mul');
+	let divTag=document.querySelector('#div');
+	let opTag=document.querySelector('#op');
+	let equalsTag=document.querySelector('#equals');
+	let clearTag=document.querySelector('#clear')
+	
+	addfunc=()=>
+	{
+		let firstNumEntered=Number(firstNumTag.value);
+		let secondNumEntered=Number(secondNumTag.value);
+		let add=firstNumEntered+secondNumEntered;
+		displayTag.innerText=add;
+		op.innerText='+';
+	}
+
+	subfunc=()=>
+	{
+		let firstNumEntered=Number(firstNumTag.value);
+		let secondNumEntered=Number(secondNumTag.value);
+		let sub=firstNumEntered-secondNumEntered;
+		displayTag.innerText=sub;
+		op.innerText='-';	
+	}
+
+	mulfunc=()=>
+	{
+		let firstNumEntered=Number(firstNumTag.value);
+		let secondNumEntered=Number(secondNumTag.value);
+		let mul=firstNumEntered*secondNumEntered;
+		displayTag.innerText=mul;
+		op.innerText='*';
+	}
+
+	divfunc=()=>
+	{
+		let firstNumEntered=Number(firstNumTag.value);
+		let secondNumEntered=Number(secondNumTag.value);
+		if (firstNumEntered=='0' || secondNumEntered=='0')
+		{
+			var div=0;
+		}
+		else
+		{
+			 div=firstNumEntered/secondNumEntered;
+		}
+		
+		displayTag.innerText=div;
+		op.innerText='/';
+	}
+
+	addTag.addEventListener('click',function()
+	{
+		addfunc();	
+	})
+
+	subTag.addEventListener('click',function()
+	{
+		subfunc();
+	})
+
+	mulTag.addEventListener('click',function()
+	{
+		mulfunc();
+	})
+
+	divTag.addEventListener('click',function()
+	{
+		divfunc();	
+	})	
+
+	equalsTag.addEventListener('click',function()
+	{
+		let opSel=opTag.innerText;
+		if (opSel=='+')
+		 {
+		 		addfunc();
+		}
+		else if(opSel=='-')
+		{
+			subfunc();
+		}
+
+		else if(opSel=='*')
+		{
+			mulfunc();
+		}
+
+		else if(opSel=='/')
+		{
+			divfunc();
+		}
+	})
+
+	clearTag.addEventListener('click',function()
+	{
+		displayTag.innerText='RESULT';
+		firstNumTag.value='';
+		secondNumTag.value='';
+	})
+
+</script>
+</body>
+</html>
